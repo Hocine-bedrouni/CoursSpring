@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Configuration de mes beans pour Spring-->
+<!--    Doit contenir le mode d'emploi-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="guitare" class="fr.exemple.entity.Guitare"/>
+<!--    ajout d'un second bean: Guitariste-->
+    <bean id="guitariste" class="fr.exemple.entity.Guitariste">
+<!--        Injection de dépendance par constructeur-->
+        <constructor-arg index="0" value="Flalane"/>
+        <constructor-arg index="1" ref="guitare"/>
+    </bean>
+
+
+    <bean id="piano" class="fr.exemple.entity.Piano"/>
+    <!--    ajout d'un second bean: Pianiste-->
+    <bean id="pianiste" class="fr.exemple.entity.Pianiste">
+<!--        Injection de dépendance par attribut-->
+        <property name="nom">
+            <value>langlangue</value>
+        </property>
+        <property name="piano">
+            <ref bean="piano"/>
+        </property>
+    </bean>
+
+</beans>
